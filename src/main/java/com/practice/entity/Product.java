@@ -1,9 +1,12 @@
 package com.practice.entity;
 
+
+import org.hibernate.annotations.Type;
+import org.springframework.data.annotation.CreatedDate;
+
 import java.io.Serializable;
 import javax.persistence.*;
 import java.util.Date;
-import java.util.List;
 
 
 /**
@@ -15,7 +18,7 @@ import java.util.List;
 public class Product implements Serializable {
 	private static final long serialVersionUID = 1L;
 
-	@Id
+	@Id@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name="PRODUCT_ID")
 	private int productId;
 
@@ -24,6 +27,9 @@ public class Product implements Serializable {
 	@Column(name="IMAGE_URL")
 	private String imageUrl;
 
+	//@Type(type = "org.jadira.usertype.dateandtime.joda.PersistentDateTime")
+	//@Type(type="org.jadira.usertype.dateandtime.joda.PersistentLocalDateTime")
+	//@CreatedDate
 	@Temporal(TemporalType.TIMESTAMP)
 	@Column(name="INSERT_DATE")
 	private Date insertDate;
@@ -37,10 +43,6 @@ public class Product implements Serializable {
 	private int quantity;
 
 	private String specifications;
-
-	//bi-directional many-to-one association to Item
-	@OneToMany(mappedBy="product")
-	private List<Item> items;
 
 	public Product() {
 	}
@@ -107,28 +109,6 @@ public class Product implements Serializable {
 
 	public void setSpecifications(String specifications) {
 		this.specifications = specifications;
-	}
-
-	public List<Item> getItems() {
-		return this.items;
-	}
-
-	public void setItems(List<Item> items) {
-		this.items = items;
-	}
-
-	public Item addItem(Item item) {
-		getItems().add(item);
-		item.setProduct(this);
-
-		return item;
-	}
-
-	public Item removeItem(Item item) {
-		getItems().remove(item);
-		item.setProduct(null);
-
-		return item;
 	}
 
 }
