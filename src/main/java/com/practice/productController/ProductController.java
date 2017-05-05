@@ -1,13 +1,18 @@
-package com.practice.com.practice.productController;
+package com.practice.productController;
 
-import com.practice.com.practice.repository.ProductRepository;
+
 import com.practice.entity.Product;
+import com.practice.productService.ProductService;
+import com.practice.productService.ProductServiceImpl;
+import com.practice.repository.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import java.sql.Timestamp;
+import java.util.List;
 
 
 /**
@@ -19,7 +24,9 @@ public class ProductController {
 
 
    @Autowired
-    ProductRepository productRepository;
+   ProductRepository productRepository;
+   @Autowired
+   ProductService productService;
 
 @RequestMapping(value="/abcd",method= RequestMethod.GET)
 void insert(){
@@ -38,9 +45,28 @@ System.out.println("here----------");
 
 }
 
-    @RequestMapping(value="/home",method= RequestMethod.GET)
+/*    @RequestMapping(value="/home",method= RequestMethod.GET)
 void home(){
 
+}*/
+
+@RequestMapping(value = "/addProduct",method = RequestMethod.GET)
+void addNewProduct(){
+
 }
+
+@RequestMapping(value = "/viewProducts", method = RequestMethod.GET)
+void viewProducts(Model model){
+  List<Product> productsList = productService.getAllProducts();
+System.out.println(productsList);
+for(Product x: productsList ){
+    System.out.println(x.getName());
+    System.out.println(x.getDescription());
+    System.out.println(x.getSpecifications());
+
+}
+  model.addAttribute("productList",productsList);
+}
+
 
 }

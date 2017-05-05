@@ -14,7 +14,7 @@ import java.util.Date;
 public class Item implements Serializable {
 	private static final long serialVersionUID = 1L;
 
-	@Id
+	@Id@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name="ITEM_ID")
 	private int itemId;
 
