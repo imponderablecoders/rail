@@ -74,9 +74,9 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Open Sans", sans-serif}
             <!-- Accordion -->
             <div class="w3-card-2 w3-round">
                 <div class="w3-white">
-                    <button onclick="" class="w3-button w3-block w3-theme-l1 w3-left-align"><i class="glyphicon glyphicon-plus"></i> Add Product</button>
+                    <button id="addProduct" class="w3-button w3-block w3-theme-l1 w3-left-align"><i class="glyphicon glyphicon-plus"></i> Add Product</button>
 
-                    <button id="productList" onclick="myFunction('Demo2')" class="w3-button w3-block w3-theme-l1 w3-left-align"><i class="glyphicon glyphicon-th-list"></i> Products List</button>
+                    <button id="productList"  class="w3-button w3-block w3-theme-l1 w3-left-align"><i class="glyphicon glyphicon-th-list"></i> Products List</button>
 
                     <button onclick="myFunction('Demo2')" class="w3-button w3-block w3-theme-l1 w3-left-align"><i class="glyphicon glyphicon-plus-sign"></i> Add Item</button>
 
@@ -246,6 +246,10 @@ function openNav() {
 $( document ).ready(function() {
     $("#productList").click(function() {
         window.location.replace("/viewProducts");
+    });
+
+    $("#addProduct").click(function() {
+        window.location.replace("/addProduct");
     });
 });
 </script>

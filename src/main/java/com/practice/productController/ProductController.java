@@ -32,15 +32,19 @@ public class ProductController {
 void insert(){
     System.out.println("here----------");
     Product product = new Product();
-    product.setName("w2wdpulsar435");
-    product.setDescription("bike ra");
-    product.setSpecifications("amazng ra");
+    product.setName("BMW");
+    product.setDescription("car ra");
+    product.setSpecifications("it is Modable! ");
     product.setQuantity(10);
     /*Timestamp timestamp = new Timestamp(System.currentTimeMillis());
     System.out.println(timestamp);*/
     product.setInsertDate(new Timestamp(System.currentTimeMillis()));
+    product.setLastUpdated(new Timestamp(System.currentTimeMillis()));
+    product.setImageUrl("https://tinyurl.com/ls9hbsd");
+
     System.out.println("here----------");
     productRepository.save(product);
+    System.out.println("---------------"+product.getProductId());
 System.out.println("here----------");
 
 }
