@@ -67,7 +67,6 @@ for(Product x: productsList ){
     System.out.println(x.getName());
     System.out.println(x.getDescription());
     System.out.println(x.getSpecifications());
-
 }
   model.addAttribute("productList",productsList);
 }
