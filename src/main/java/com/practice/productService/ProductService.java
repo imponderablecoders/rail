@@ -13,4 +13,6 @@ public interface ProductService {
 
     List<Product> getAllProducts();
 
+    int insertProduct(String productName, String productDesc, String productSpec,int productQnty, String imageUrl );
+
 }

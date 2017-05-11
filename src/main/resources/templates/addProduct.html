@@ -74,7 +74,7 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Open Sans", sans-serif}
                 <h2>Add Product</h2>
             </div>
             <div class="w3-card-2 w3-round w3-white " style="padding:20px;">
-                <form action="/submitProduct" method="get">
+                <form action="/submitProduct" method="post">
                     <br/>
                     <label>Name</label>
                     <input class="w3-input " type="text" name="product_name"/>
@@ -96,7 +96,7 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Open Sans", sans-serif}
                         </div>
                     </div>
 
-                    <input id="numOfSpec" value="1" name="numOfSpec" type="hidden"/>
+                    <input id="numOfSpec" value="1" name="num_of_spec" type="hidden"/>
 
                     <br/>
                     <button type="submit" class="w3-btn  w3-ripple w3-theme">Proceed</button>

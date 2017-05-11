@@ -24,4 +24,20 @@ public class ProductServiceImpl implements ProductService {
 
         return productList;
     }
+
+    @Override
+    public int insertProduct(String productName, String productDesc, String productSpec,int productQnty, String imageUrl ) {
+        Product product = new Product();
+        product.setName(productName);
+        product.setDescription(productDesc);
+        product.setSpecifications(productSpec);
+        product.setQuantity(productQnty);
+        product.setImageUrl(imageUrl);
+
+        productRepository.save(product);
+
+        return product.getProductId();
+    }
+
+
 }
