@@ -71,16 +71,16 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Open Sans", sans-serif}
         <div class="w3-col w3-container" style="width:60%">
 
             <div class="w3-container w3-theme-l1">
-                <h2>Add Product</h2>
+                <h2>Edit Product</h2>
             </div>
             <div class="w3-card-2 w3-round w3-white " style="padding:20px;">
                 <form action="/submitProduct" method="post">
                     <br/>
                     <label>Name</label>
-                    <input class="w3-input " type="text" name="product_name"/>
+                    <input class="w3-input" type="text" name="product_name" th:value="${product.name}"/>
                     <br/>
                     <label>Description</label>
-                    <textarea class="w3-input" name="product_desc" rows="3" style="width:100%;"> </textarea>
+                    <textarea class="w3-input" name="product_desc" rows="3" style="width:100%;" th:inline="text">[[${product.description}]] </textarea>
                     <br/>
                     <label>Specifications</label>
                     <br/>

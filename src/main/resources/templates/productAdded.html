@@ -97,7 +97,7 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Open Sans", sans-serif}
         <div class="w3-col w3-container" style="width:20%"></div>
     </div>-->
 
-    <div class="w3-row">
+    <div class="w3-row" >
         <div class="w3-col w3-container" style="width:20%"></div>
         <div class="w3-col w3-container" style="width:60%">
 
@@ -124,11 +124,30 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Open Sans", sans-serif}
                         </div>
                     </div>
                     <hr/>
-                    <div class="w3-row">
+                    <div id="secification" class="w3-row">
                         <h4><strong>Specifications</strong></h4>
-
+                        <table  style="padding-left:25px;padding-right:25px;" class="table">
+                            <tbody id="spec_table">
+                            <!--<tr>
+                                <td style="width:200px;">John</td>
+                                <td>Doe</td>
+                            </tr>-->
+                            </tbody>
+                        </table>
                     </div>
 
+                </div>
+            </div>
+
+            <br/>
+            <button class="w3-btn w3-block w3-theme"><i class="glyphicon glyphicon-plus"></i> Add an Item for this product</button>
+            <br/>
+            <div class="w3-center" >
+                <div class="w3-bar" >
+                    <form th:action="@{/editProduct/__${product.productId}__}" method="get">
+                    <button id="edit_button" style="margin-bottom:20px;" class="w3-btn w3-white w3-border"><span class="glyphicon glyphicon-pencil"></span> Edit details </button>
+                    </form>
+                        <button style="margin-bottom:20px;" class="w3-btn w3-red"><span class="glyphicon glyphicon-trash"></span> Delete this Product</button>
                 </div>
             </div>
 
@@ -148,10 +167,17 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Open Sans", sans-serif}
     var spec = [[${product.specifications}]];
     var arr = spec.split('!@#');
 
-    for (i = 0; i < arr.length; i++) {
+    for (i = 0; i <= arr.length; i++) {
     specRow = arr[i];
     console.log(specRow);
+    var arr1 = specRow.split('#$&');
+
+    $( "#spec_table" ).append('<tr><td style="width:200px;"><strong>' + arr1[0] +'</strong></td><td>' + arr1[1] +'</td></tr>');
 }
+
+
+
+
 
 
 /*]]>*/
