@@ -75,7 +75,7 @@ void home(){
     }
 
     @RequestMapping(value = "/submitProduct", method = RequestMethod.POST)
-    String submitNewProduct(HttpServletRequest request, @RequestParam("product_name") String productName,
+    String submitNewProduct(Model model,HttpServletRequest request, @RequestParam("product_name") String productName,
                             @RequestParam("product_desc") String productDesc,
                             @RequestParam("num_of_spec") int numOfSpec) {
 
@@ -98,7 +98,17 @@ void home(){
 
         System.out.println("insert-id"+insertId);
 
-        return "addProduct";
+        Product product = productService.getProductById(insertId);
+
+        /*String spec = product.getSpecifications();
+        String[] indiSpec = spec.split("!@#");
+
+*/
+
+        model.addAttribute("product",product);
+        //model.addAttribute()
+
+        return "productAdded";
     }
 
 
