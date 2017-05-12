@@ -16,4 +16,6 @@ public interface ProductService {
     int insertProduct(String productName, String productDesc, String productSpec,int productQnty, String imageUrl );
 
     Product getProductById(int id);
+
+    Product updateProduct(int productId ,String productName, String productDesc, String productSpec);
 }

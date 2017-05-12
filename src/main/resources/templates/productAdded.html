@@ -104,8 +104,11 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Open Sans", sans-serif}
             <!--<div class="alert alert-success">
                <p><strong>Success! Product Added with ID: </strong> <span th:text="${product.productId}"></span> </strong></p>
             </div>-->
-            <div class="w3-container alert alert-success">
+            <div th:if="${submOrUpdt == 'sub'}" class="w3-container alert alert-success">
                 <h3>Success! Product Added with ID: <strong> <span th:text="${product.productId}"></span> </strong></h3>
+            </div>
+            <div th:if="${submOrUpdt == 'up'}" class="w3-container alert alert-success">
+                <h3>Product with ID: <strong> <span th:text="${product.productId}"></span> Updated! </strong></h3>
             </div>
 
             <div class="w3-card-2 w3-round w3-white ">
@@ -176,7 +179,9 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Open Sans", sans-serif}
 }
 
 
-
+ $("#spec_table").click(function(){
+        alert("button");
+    });
 
 
 

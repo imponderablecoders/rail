@@ -105,12 +105,13 @@ void home(){
         String[] indiSpec = spec.split("!@#");
 
 */
-
+        model.addAttribute("submOrUpdt","sub");
         model.addAttribute("product",product);
         //model.addAttribute()
 
         return "productAdded";
     }
+
 
     @RequestMapping(value = "/editProduct/{productId}", method = RequestMethod.GET)
     String editProduct(@PathVariable int productId,Model model) {
@@ -123,6 +124,35 @@ void home(){
 
        return "editProduct";
 
+    }
+
+
+    @RequestMapping(value = "/updateProduct", method = RequestMethod.POST)
+    String updateProduct(Model model,HttpServletRequest request, @RequestParam("product_name") String productName,
+                            @RequestParam("product_desc") String productDesc,
+                            @RequestParam("num_of_spec") int numOfSpec,@RequestParam("product_id") int productId) {
+
+        if (productId == 0){
+            System.out.println("erooooooooooooooooooooooooooooor!!!!!!!!!!!!!1");
+        }
+
+        StringBuilder specBuilder =new StringBuilder();
+        for(int i=1; i<=numOfSpec;i++){
+            String key = request.getParameter("key"+i);
+            String value = request.getParameter("value"+i);
+            specBuilder.append(key);
+            specBuilder.append("#$&");
+            specBuilder.append(value);
+            if(i < numOfSpec)
+                specBuilder.append("!@#");
+        }
+
+        Product product = productService.updateProduct(productId,productName,productDesc,specBuilder.toString());
+
+        model.addAttribute("product",product);
+        model.addAttribute("submOrUpdt","up");
+
+        return "productAdded";
     }
 
 

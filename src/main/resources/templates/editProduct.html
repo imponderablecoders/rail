@@ -74,29 +74,30 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Open Sans", sans-serif}
                 <h2>Edit Product</h2>
             </div>
             <div class="w3-card-2 w3-round w3-white " style="padding:20px;">
-                <form action="/submitProduct" method="post">
+                <form action="/updateProduct" method="post">
                     <br/>
                     <label>Name</label>
-                    <input class="w3-input" type="text" name="product_name" th:value="${product.name}"/>
+                    <input id="inpName" class="w3-input" type="text" name="product_name" />
                     <br/>
                     <label>Description</label>
-                    <textarea class="w3-input" name="product_desc" rows="3" style="width:100%;" th:inline="text">[[${product.description}]] </textarea>
+                    <textarea id="inpDesc" class="w3-input" name="product_desc" rows="3" style="width:100%;" > </textarea>
                     <br/>
                     <label>Specifications</label>
                     <br/>
-                    <button id="add_spec" class="w3-btn w3-circle w3-theme">+</button>
-                    <button id="del_spec" class="w3-btn w3-circle w3-theme">-</button>
+                    <button type="button" id="add_spec" class="w3-btn w3-circle w3-theme">+</button>
+                    <button type="button" id="del_spec" class="w3-btn w3-circle w3-theme">-</button>
 
 
                     <div id="spec_div">
                         <div class="input-group" style="margin-top:10px;">
-                            <input name="key1" type="text" class="form-control" placeholder="Key1"/>
+                            <input id="key1" name="key1" type="text" class="form-control" placeholder="Key1"/>
                             <span class="input-group-addon">-</span>
-                            <input name="value1" type="text" class="form-control" placeholder="Value1"/>
+                            <input id="value1" name="value1" type="text" class="form-control" placeholder="Value1"/>
                         </div>
                     </div>
 
                     <input id="numOfSpec" value="1" name="num_of_spec" type="hidden"/>
+                    <input id="productId" value="0" name="product_id" type="hidden"/>
 
                     <br/>
                     <button type="submit" class="w3-btn  w3-ripple w3-theme">Proceed</button>
@@ -113,7 +114,50 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Open Sans", sans-serif}
 </div>
 
 
-<script src="js/addPro.js"></script>
 
+<script th:inline="javascript">
+/*<![CDATA[*/
+
+var id = [[${product.productId}]];
+$("#productId").val(id);
+var name = [[${product.name}]];
+var desc = [[${product.description}]];
+    alert(name+'=='+desc);
+    $("#inpName").val(name);
+    $("#inpDesc").val(desc);
+var spec = [[${product.specifications}]];
+
+
+    var j =1;
+
+
+    console.log(spec);
+    var arr = spec.split('!@#');
+
+        for (i = 0; i <= arr.length; i++) {
+    specRow = arr[i];
+    console.log(specRow);
+    var arr1 = specRow.split('#$&');
+
+    if(i == 0){
+        $('#key1').val(arr1[0]);
+        $('#value1').val(arr1[1]);
+    }else{
+        j++;
+         $( "#spec_div" ).append('<div class="input-group" style="margin-top:10px;">'
+                           + '<input value="'+arr1[0]+'" name="key'+j+'" type="text" class="form-control" placeholder="Key'+j+'"/>'
+                           + '<span class="input-group-addon">-</span>'
+                           + '<input value="'+arr1[1]+'" name="value'+j+'" type="text" class="form-control" placeholder="Value'+j+'"/>'
+                           + '</div>');
+
+         $("#numOfSpec").val(''+j);
+    }
+
+}
+
+/*]]>*/
+
+</script>
+<script  type="text/javascript" th:src="@{/js/editPro.js}"/>
 </body>
 </html>
