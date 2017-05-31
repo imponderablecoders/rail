@@ -95,6 +95,8 @@ void home(){
         }
         System.out.println(specBuilder.toString());
 
+       // if(productService.checkIfProductNameExists(productName));
+
         int insertId = productService.insertProduct(productName,productDesc,specBuilder.toString(),0,"http://www.picserver.org/images/highway/phrases/product.jpg");
 
         System.out.println("insert-id"+insertId);

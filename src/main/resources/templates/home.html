@@ -78,7 +78,7 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Open Sans", sans-serif}
 
                     <button id="productList"  class="w3-button w3-block w3-theme-l1 w3-left-align"><i class="glyphicon glyphicon-th-list"></i> Products List</button>
 
-                    <button onclick="myFunction('Demo2')" class="w3-button w3-block w3-theme-l1 w3-left-align"><i class="glyphicon glyphicon-plus-sign"></i> Add Item</button>
+                    <button id="addItem" class="w3-button w3-block w3-theme-l1 w3-left-align"><i class="glyphicon glyphicon-plus-sign"></i> Add Item</button>
 
                     <!--<button onclick="myFunction('Demo3')" class="w3-button w3-block w3-theme-l1 w3-left-align"><i class="glyphicon glyphicon-plus-sign"></i> Add Item</button>
                     <div id="Demo3" class="w3-hide w3-container">
@@ -250,6 +250,10 @@ $( document ).ready(function() {
 
     $("#addProduct").click(function() {
         window.location.replace("/addProduct");
+    });
+
+    $("#addItem").click(function() {
+        window.location.replace("/addItem");
     });
 });
 </script>

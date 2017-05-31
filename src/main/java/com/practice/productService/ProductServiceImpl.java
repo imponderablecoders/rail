@@ -5,6 +5,7 @@ import com.practice.repository.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -33,6 +34,8 @@ public class ProductServiceImpl implements ProductService {
         product.setSpecifications(productSpec);
         product.setQuantity(productQnty);
         product.setImageUrl(imageUrl);
+        product.setInsertDate(new Timestamp(System.currentTimeMillis()));
+        product.setLastUpdated(new Timestamp(System.currentTimeMillis()));
 
         productRepository.save(product);
 
@@ -55,9 +58,11 @@ public class ProductServiceImpl implements ProductService {
         product.setName(productName);
         product.setDescription(productDesc);
         product.setSpecifications(productSpec);
-
+        product.setLastUpdated(new Timestamp(System.currentTimeMillis()));
         return productRepository.save(product);
     }
+
+
 
 
 }

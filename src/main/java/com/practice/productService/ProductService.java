@@ -18,4 +18,6 @@ public interface ProductService {
     Product getProductById(int id);
 
     Product updateProduct(int productId ,String productName, String productDesc, String productSpec);
+
+
 }
