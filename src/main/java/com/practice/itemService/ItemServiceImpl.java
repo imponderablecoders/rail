@@ -42,6 +42,9 @@ public class ItemServiceImpl implements ItemService {
             System.out.println("here!!!!!fff");
             e.printStackTrace();
         }
+
+        System.out.println("itemOrderedOndate insert"+itemOrderedOndate+" || "+DateOrderedOn);
+
         Product product = productRepository.getOne(productId);
         int Proquantity = product.getQuantity();
         product.setQuantity(++Proquantity);
@@ -57,11 +60,58 @@ public class ItemServiceImpl implements ItemService {
         item.setItemAddedBy(itemAddedBy);
         item.setInsertDate(new Timestamp(System.currentTimeMillis()));
         item.setLastUpdated(new Timestamp(System.currentTimeMillis()));
-
+        item.setAvailability(0);
 
         itemRepository.save(item);
         productRepository.save(product);
 
         return item;
+    }
+
+    @Override
+    public void deleteItem(int itemId) {
+        itemRepository.delete(itemId);
+    }
+
+    @Override
+    public Item getOneItem(int itemId) {
+
+       // itemRepository.getOne(itemId);
+
+        return itemRepository.getOne(itemId);
+    }
+
+    @Override
+    public Item updateItem(int itemId,int productId, String itemUniqueId, String itemOrderedOndate,
+                           String itemOrderedfrom, String contractDeliveryDate, String actualDeliveryDate,
+                           String itemAddedBy) {
+        Date DateOrderedOn = null;
+        Date DateCntrctDel = null;
+        Date DateActualDel = null;
+        try {
+            DateOrderedOn = formatter.parse(itemOrderedOndate);
+            DateCntrctDel = formatter.parse(contractDeliveryDate);
+            DateActualDel = formatter.parse(actualDeliveryDate);
+            System.out.println("here!!!!!ffg");
+        } catch (ParseException e) {
+            System.out.println("here!!!!!fff");
+            e.printStackTrace();
+        }
+
+        System.out.println("itemOrderedOndate update"+itemOrderedOndate+" || "+DateOrderedOn);
+
+
+        Item item = itemRepository.getOne(itemId);
+        item.setOrderedOn(DateOrderedOn);
+        item.setOrderedFrom(itemOrderedfrom);
+        item.setContractDelvDt(DateCntrctDel);
+        item.setActualDelvDt(DateActualDel);
+        item.setItemAddedBy(itemAddedBy);
+
+        itemRepository.save(item);
+
+
+
+        return itemRepository.getOne(itemId);
     }
 }

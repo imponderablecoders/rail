@@ -22,6 +22,7 @@ public class Item implements Serializable {
 	@Column(name="ACTUAL_DELV_DT")
 	private Date actualDelvDt;
 
+
 	@Column(name="AVAIL_CHANGED_BY")
 	private String availChangedBy;
 

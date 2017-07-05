@@ -16,7 +16,8 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"/>
     <style>
 html,body,h1,h2,h3,h4,h5 {font-family: "Open Sans", sans-serif}
-</style>
+
+    </style>
 
     <title>View Products</title>
 
@@ -26,20 +27,28 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Open Sans", sans-serif}
 <!-- Navbar -->
 <div class="w3-top">
     <div class="w3-bar w3-theme-d2 w3-left-align w3-large">
-        <a class="w3-bar-item w3-button w3-hide-medium w3-hide-large w3-right w3-padding-large w3-hover-white w3-large w3-theme-d2" href="/home" onclick="openNav()"><i class="fa fa-bars"></i></a>
-        <a href="/home" class="w3-bar-item w3-button w3-padding-large w3-theme-d4"><i class="fa fa-home w3-margin-right"></i>Home</a>
-        <a href="#" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white" title="News"><i class="fa fa-globe"></i></a>
-        <a href="#" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white" title="Account Settings"><i class="fa fa-user"></i></a>
-        <a href="#" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white" title="Messages"><i class="fa fa-envelope"></i></a>
+        <a class="w3-bar-item w3-button w3-hide-medium w3-hide-large w3-right w3-padding-large w3-hover-white w3-large w3-theme-d2"
+           href="/home" onclick="openNav()"><i class="fa fa-bars"></i></a>
+        <a href="/home" class="w3-bar-item w3-button w3-padding-large w3-theme-d4"><i
+                class="fa fa-home w3-margin-right"></i>Home</a>
+        <a href="#" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white" title="News"><i
+                class="fa fa-globe"></i></a>
+        <a href="#" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white"
+           title="Account Settings"><i class="fa fa-user"></i></a>
+        <a href="#" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white" title="Messages"><i
+                class="fa fa-envelope"></i></a>
         <div class="w3-dropdown-hover w3-hide-small">
-            <button class="w3-button w3-padding-large" title="Notifications"><i class="fa fa-bell"></i><span class="w3-badge w3-right w3-small w3-green">3</span></button>
+            <button class="w3-button w3-padding-large" title="Notifications"><i class="fa fa-bell"></i><span
+                    class="w3-badge w3-right w3-small w3-green">3</span></button>
             <div class="w3-dropdown-content w3-card-4 w3-bar-block" style="width:300px">
                 <a href="#" class="w3-bar-item w3-button">One new friend request</a>
                 <a href="#" class="w3-bar-item w3-button">John Doe posted on your wall</a>
                 <a href="#" class="w3-bar-item w3-button">Jane likes your post</a>
             </div>
         </div>
-        <a href="#" class="w3-bar-item w3-button w3-hide-small w3-right w3-padding-large w3-hover-white" title="My Account"><img src="https://www.w3schools.com/w3images/avatar2.png" class="w3-circle" style="height:25px;width:25px" alt="Avatar"/></a>
+        <a href="#" class="w3-bar-item w3-button w3-hide-small w3-right w3-padding-large w3-hover-white"
+           title="My Account"><img src="https://www.w3schools.com/w3images/avatar2.png" class="w3-circle"
+                                   style="height:25px;width:25px" alt="Avatar"/></a>
     </div>
 </div>
 
@@ -56,8 +65,7 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Open Sans", sans-serif}
 <div class="w3-container w3-content" style="max-width:1400px;margin-top:80px">
 
 
-
-    <div class="w3-row" >
+    <div class="w3-row">
         <div class="w3-col w3-container" style="width:20%"></div>
         <div class="w3-col w3-container" style="width:60%">
 
@@ -67,42 +75,97 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Open Sans", sans-serif}
                     <p>Item has been Added to <span th:text="${itemBelongsTo}"></span></p>
                 </div>
             </div>
-
+            <div th:if="${edited == 'yes'}" class="w3-container alert alert-success">
+                <div class="w3-panel w3-green">
+                    <h3>Done!</h3>
+                    <p>Item Edited</p>
+                </div>
+            </div>
 
 
             <div class="w3-card-2 w3-round w3-white ">
 
 
-
                 <div style="padding:10px;" id="secification" class="w3-row">
 
-                    <h5>Unique ID</h5>
-                    <p><span th:text="${item.uniqueId}"></span></p>
+                    <!-- <h4>Unique ID</h4>
+                     <p><span th:text="${item.uniqueId}"></span></p>
+                     <h4>Product</h4>
+                     <p><span th:text="${itemBelongsTo}"></span></p>-->
 
+                    <div class="w3-row">
+
+                        <div class="w3-half w3-container">
+                            <h4><strong>Unique ID</strong></h4>
+                            <p><span th:text="${item.uniqueId}"></span></p>
+                            <h4><strong>Product</strong></h4>
+                            <p><span th:text="${itemBelongsTo}"></span></p>
+                            <h4><strong>Item added by</strong></h4>
+                            <p><span th:text="${item.itemAddedBy}"></span></p>
+                            <h4><strong>Availability changed by</strong></h4>
+                            <p><span th:text="${item.availChangedBy != null} ? ${item.availChangedBy} : '-NA-'"></span>
+                            </p>
+                        </div>
+                        <div class="w3-half w3-container">
+                            <h4><strong>Ordered From</strong></h4>
+                            <p><span th:text="${item.orderedFrom}"></span></p>
+                            <h4><strong>Ordered on</strong></h4>
+                            <p><span
+                                    th:text="${item.orderedOn != null} ? ${#dates.format(item.orderedOn, 'dd-MMM-yyyy')} : '-NA-'"></span>
+                            </p>
+                            <h4><strong>Contract delivery date on</strong></h4>
+                            <p><span
+                                    th:text="${item.contractDelvDt != null} ? ${#dates.format(item.contractDelvDt, 'dd-MMM-yyyy')} : '-NA-'"></span>
+                            </p>
+                            <h4><strong>Actual delivery date on</strong></h4>
+                            <p><span
+                                    th:text="${item.actualDelvDt != null} ? ${#dates.format(item.actualDelvDt, 'dd-MMM-yyyy')} : '-NA-'"></span>
+                            </p>
+                            <h4><strong>Used on</strong></h4>
+                            <p><span
+                                    th:text="${item.usedOn != null} ? ${#dates.format(item.usedOn, 'dd-MMM-yyyy')} : '-NA-'"></span>
+                            </p>
+                        </div>
+                        <div class="w3-container">
+                            <span><strong>Availability : </strong></span>
+                            <span th:text="${item.availability == 0} ? 'Available' : 'Not Available'"></span>
+
+                        </div>
+                    </div>
 
                 </div>
 
-                </div>
+            </div>
+            <br/>
+            <div class="w3-center">
+                <form style="display:inline;"  th:action="@{/editItem/__${item.itemId}__}" method="post">
+                    <button id="editItem" class="w3-btn w3-white w3-border"><span class="glyphicon glyphicon-pencil"></span> Edit this Item</button>
+                </form>
+            <form style="display:inline;" th:action="@{/delItem/__${item.itemId}__}" method="post">
+                <button id="delItem"  class="w3-btn w3-red "><span class="glyphicon glyphicon-trash"></span> Delete this Item</button>
+            </form>
+
+                <button  id="addItem"  class="w3-btn w3-green w3-border"><span class="glyphicon glyphicon-plus"></span> Add new Item</button>
+
+            </div>
 
 
-
-
-
-
-
-    </div>
+        </div>
         <div class="w3-col w3-container" style="width:20%"></div>
     </div>
 
 
-
-
-
 </div>
 
+<script>
+    $( document ).ready(function() {
+    $("#addItem").click(function() {
+        window.location.replace("/addItem");
+    });
 
 
+});
 
-
+</script>
 </body>
 </html>

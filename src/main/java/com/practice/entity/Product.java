@@ -27,9 +27,6 @@ public class Product implements Serializable {
 	@Column(name="IMAGE_URL")
 	private String imageUrl;
 
-	//@Type(type = "org.jadira.usertype.dateandtime.joda.PersistentDateTime")
-	//@Type(type="org.jadira.usertype.dateandtime.joda.PersistentLocalDateTime")
-	//@CreatedDate
 	@Temporal(TemporalType.TIMESTAMP)
 	@Column(name="INSERT_DATE")
 	private Date insertDate;
